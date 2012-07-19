@@ -15,7 +15,7 @@
 			case 1 :
 ?>
 				<h3>Utilisateur supprimé !</h3>
-				{{Form::open('admin/delUser/?etape=2')}}
+				{{Form::open('admin/delUser/?etape=1')}}
 					{{Form::submit('Retour')}}
 				{{Form::close()}}
 <?php 

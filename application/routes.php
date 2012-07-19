@@ -40,7 +40,8 @@ Route::any('install', 'setup@install');
 Route::any('login', 'home@login');
 Route::any('admin/newUser', 'admin@newUser');
 Route::any('admin/delUser', 'admin@delUser');
-
+Route::any('admin/newProject', 'admin@newProject');
+Route::any('admin/delProject', 'admin@delProject');
 /*
 |--------------------------------------------------------------------------
 | Application 404 & 500 Error Handlers

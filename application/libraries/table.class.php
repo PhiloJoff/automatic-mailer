@@ -84,25 +84,24 @@ class TableSQL
 		                    </tr>';
 		     
 	    while($row = mysql_fetch_assoc($statement)) {
-	        if(strcmp($row['role'], 'admin') != 0){
 
-		        $tableSQL .= '
-		        			<tr>
-		                        <td class = \'table-bordered\'>' . $row['id'] . '</td>
-		                        <td class = \'table-bordered\'>' . $row['nameProject'] . '</td>
-		                        <td class = \'table-bordered\'>' . $row['created_at'] . '</td>
-		                        <td class = \'table-bordered\'>' . $row['begin_at'] . '</td>
-		                        <td class = \'table-bordered\'>' . $row['end_at'] . '</td>
-		                        <td class = \'table-bordered\'>' . $row['descriptionProject'] . '</td>
-		                        <td class = \'table-bordered\'>' . $row['user_ID'] . '</td>
-		                        <td class = \'table-bordered\'>' . 
-		                        Form::open('admin/delProject/').
-									Form::hidden('name', $row['nameProject']).
-									Form::hidden('id', $row['id']).
-									Form::submit('Supprimer').
-								Form::close(). '</td>
-		                    </tr>';
-		    }
+	        $tableSQL .= '
+	        			<tr>
+	                        <td class = \'table-bordered\'>' . $row['id'] . '</td>
+	                        <td class = \'table-bordered\'>' . $row['nameProject'] . '</td>
+	                        <td class = \'table-bordered\'>' . $row['created_at'] . '</td>
+	                        <td class = \'table-bordered\'>' . $row['begin_at'] . '</td>
+	                        <td class = \'table-bordered\'>' . $row['end_at'] . '</td>
+	                        <td class = \'table-bordered\'>' . $row['descriptionProject'] . '</td>
+	                        <td class = \'table-bordered\'>' . $row['user_ID'] . '</td>
+	                        <td class = \'table-bordered\'>' . 
+	                        Form::open('admin/delProject/').
+								Form::hidden('name', $row['nameProject']).
+								Form::hidden('id', $row['id']).
+								Form::submit('Supprimer').
+							Form::close(). '</td>
+	                    </tr>';
+		   
 	    }
 	    $tableSQL .= '</table>';
 

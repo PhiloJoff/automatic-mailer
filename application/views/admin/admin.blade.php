@@ -34,6 +34,7 @@
 ?>
 			<div>
 				<h3>Liste des projets</h3>
+				{{ HTML::link_to_action('admin@newProject', 'Ajouter Projet') }}
 				<?php echo 	$table; ?>
 			</div>
 

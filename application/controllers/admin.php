@@ -59,9 +59,9 @@ class Admin_Controller extends Base_Controller {
 				$user->password = Hash::make(Input::get('pswUser'));
 				$user->save();
 				$content = 1;
-				break;
+				break;	
 			case'2':
-				return Redirect::to('admin');
+				return Redirect::to_action('admin@user');
 				break;
 			default:
 				$content = 0;
@@ -88,7 +88,7 @@ class Admin_Controller extends Base_Controller {
 				$content = 1;
 				break;
 			case'1':
-				return Redirect::to('admin');
+				return Redirect::to_action('admin@user');
 				break;
 			default:
 				$content = 0;
@@ -113,5 +113,67 @@ class Admin_Controller extends Base_Controller {
 
 	public function post_project()
 	{
+	}
+
+	public function get_newProject()
+	{
+		if(!isset($content)){
+			$content = 0;
+		}
+		return View::make('admin.new_project')->with('content', $content);
+	}
+
+	public function post_newProject()
+	{
+		$etape = Input::get('etape');
+		switch ($etape) {
+			case'1':
+				$project = new Project;
+				$project->nameProject = Input::get('name');
+				$project->begin_at = Input::get('begin');
+				$project->end_at = Input::get('end');
+				$project->descriptionProject = Input::get('desc');
+				$project->user_id = Input::get('user');
+				$project->save();
+				$content = 1;
+				break;	
+			case'2':
+				return Redirect::to_action('admin@project');
+				break;
+			default:
+				$content = 0;
+		}
+		return View::make('admin.new_project')->with('content', $content);
+	}
+
+	public function get_delProject()
+	{
+	}
+
+	public function post_delProject()
+	{
+		if(!isset($content)){
+			$content = 0;
+		}
+		$etape = Input::get('etape');
+		$name = Input::get('name');
+		$id = Input::get('id');
+		switch ($etape) {
+			case'0':
+				$project = Project::find($id);
+				$project->delete();
+				$content = 1;
+				break;
+			case'1':
+				return Redirect::to_action('admin@project');
+				break;
+			default:
+				$content = 0;
+		}
+		return View::make('admin.del_project')->with(array(
+			'content' => $content,
+			'project' => $name,
+			'id' => $id
+			));
 	}
 }

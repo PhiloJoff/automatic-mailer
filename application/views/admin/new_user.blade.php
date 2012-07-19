@@ -20,12 +20,9 @@
 				{{Form::close()}}
 <?php 
 				break;
-?>
-
-<?php 
 			default :
 ?>
-				<h3>Création d'un  nouvel utilisateur</h3>
+				<h3>Création d'un nouvel utilisateur</h3>
 				
 				{{Form::open('admin/newUser/?etape=1')}}
 					{{Form::label('name', 'Nom')}}

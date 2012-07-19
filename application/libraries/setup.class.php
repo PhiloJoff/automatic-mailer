@@ -78,8 +78,8 @@ class Setup{
 		$this->_Query='
 			CREATE TABLE IF NOT EXISTS projects (
 			`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-			`nameProject` varchar(250) DEFAULT NULL,
-			`created_at` date DEFAULT NULL,
+			`nameProject` varchar(250) NOT NULL,
+			`created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
 			`begin_at` date DEFAULT NULL,
 			`end_at` date DEFAULT NULL,
 			`descriptionProject` varchar(250) DEFAULT NULL,
