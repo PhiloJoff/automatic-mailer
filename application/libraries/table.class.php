@@ -7,7 +7,8 @@ class TableSQL
 	private $query;
 	private $status;
 
-	public	function __construct(){
+	public	function __construct()
+	{
 		$host = Config::get('database.connections.mysql.host');
 		$user = Config::get('database.connections.mysql.username');
 		$psw = Config::get('database.connections.mysql.password');
@@ -19,11 +20,13 @@ class TableSQL
 		return false;
 	}
 
-	public function __destruct(){
+	public function __destruct()
+	{
 		if($this->link){mysql_close($this->link);}
 	}
 
-	public function getTableUser($options = null){
+	public function getTableUser($options = null)
+	{
 		$query = 'SELECT users.* 
 	               FROM users;';
 	    $statement = mysql_query($query) or die(mysql_error());
@@ -33,7 +36,6 @@ class TableSQL
 	                        <td class = \'table-bordered\'><b>Nom</b></td>
 	                        <td class = \'table-bordered\'><b>Prénom</b></td>
 	                        <td class = \'table-bordered\'><b>Mail</b></td>
-	                        <td class = \'table-bordered\'><b>Rôle</b></td>
 	                        <td class = \'table-bordered\'><b>Login</b></td>
 	                        <td class = \'table-bordered\'><b>MDP</b></td>
 	                        <td class = \'table-bordered\'><b>Action</b></td>
@@ -48,7 +50,6 @@ class TableSQL
 		                        <td class = \'table-bordered\'>' . $row['nameUser'] . '</td>
 		                        <td class = \'table-bordered\'>' . $row['fNameUser'] . '</td>
 		                        <td class = \'table-bordered\'>' . $row['emailUser'] . '</td>
-		                        <td class = \'table-bordered\'>' . $row['role'] . '</td>
 		                        <td class = \'table-bordered\'>' . $row['login'] . '</td>
 		                        <td class = \'table-bordered\'>' . $row['password'] . '</td>
 		                        <td class = \'table-bordered\'>' . 
@@ -67,7 +68,8 @@ class TableSQL
 		return $tableSQL;
 	}
 
-	public function getTableProject($options = null){
+	public function getTableProject($options = null)
+	{
 		$query = 'SELECT projects.* 
 	               FROM projects;';
 	    $statement = mysql_query($query) or die(mysql_error());
@@ -84,7 +86,14 @@ class TableSQL
 		                    </tr>';
 		     
 	    while($row = mysql_fetch_assoc($statement)) {
-
+	    	$query2 = 'SELECT nameUser, fNameUser 
+	               FROM users
+	               WHERE id = '. $row['user_ID'] .';';
+	        $statement2 = mysql_query($query2) or die(mysql_error());
+	        while($row2 = mysql_fetch_assoc($statement2)) {
+	        	$userName =  $row2['nameUser'];
+		        $userFName = $row2['fNameUser'];
+		    }
 	        $tableSQL .= '
 	        			<tr>
 	                        <td class = \'table-bordered\'>' . $row['id'] . '</td>
@@ -93,13 +102,14 @@ class TableSQL
 	                        <td class = \'table-bordered\'>' . $row['begin_at'] . '</td>
 	                        <td class = \'table-bordered\'>' . $row['end_at'] . '</td>
 	                        <td class = \'table-bordered\'>' . $row['descriptionProject'] . '</td>
-	                        <td class = \'table-bordered\'>' . $row['user_ID'] . '</td>
+	                        <td class = \'table-bordered\'>' . $userName . ' ' . $userFName . '</td>
 	                        <td class = \'table-bordered\'>' . 
 	                        Form::open('admin/delProject/').
 								Form::hidden('name', $row['nameProject']).
 								Form::hidden('id', $row['id']).
 								Form::submit('Supprimer').
-							Form::close(). '</td>
+							Form::close(). 
+							'</td>
 	                    </tr>';
 		   
 	    }
@@ -107,5 +117,21 @@ class TableSQL
 
 
 		return $tableSQL;
+	}
+
+	public function getSelectUsers()
+	{
+		$query = 'SELECT  users.*
+					FROM users;';
+		$statement = mysql_query($query) or die(mysql_error());
+		$list = '<select name=\'user\' required>
+					<option value=""></option>';
+		while($row = mysql_fetch_assoc($statement)) {
+			$list .='<option value =\'' . $row['id'] . '\'>'
+				. $row['nameUser'] . ' ' . $row['fNameUser']
+				. '</option>';
+		}
+		$list .= '</select>';
+		return $list;
 	}
 }
