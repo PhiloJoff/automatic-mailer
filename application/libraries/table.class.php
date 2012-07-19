@@ -79,7 +79,7 @@ class TableSQL
 		               WHERE user_ID = (
 		               		SELECT id
 		               		FROM users
-		               		WHERE login = \'joff\')
+		               		WHERE login = \'' . $user. '\')
 		               		;';
         }
 	    $statement = mysql_query($query) or die(mysql_error());
@@ -90,10 +90,10 @@ class TableSQL
 		                        <td class = \'table-bordered\'><b>Date de Création</b></td>
 		                        <td class = \'table-bordered\'><b>Date de Début</b></td>
 		                        <td class = \'table-bordered\'><b>Date de Fin</b></td>
-		                        <td class = \'table-bordered\'><b>Description</b></td>
-		                        <td class = \'table-bordered\'><b>Responsable</b></td>';
+		                        <td class = \'table-bordered\'><b>Description</b></td>';
 		if($user == null){
-		    $tableSQL .='<td class = \'table-bordered\'><b>Action</b></td>';
+		    $tableSQL .='<td class = \'table-bordered\'><b>Responsable</b></td>
+		    			<td class = \'table-bordered\'><b>Action</b></td>';
 		} 
 		$tableSQL .= '</tr>';
 		     
@@ -113,10 +113,10 @@ class TableSQL
 	                        <td class = \'table-bordered\'>' . $row['created_at'] . '</td>
 	                        <td class = \'table-bordered\'>' . $row['begin_at'] . '</td>
 	                        <td class = \'table-bordered\'>' . $row['end_at'] . '</td>
-	                        <td class = \'table-bordered\'>' . $row['descriptionProject'] . '</td>
-	                        <td class = \'table-bordered\'>' . $userName . ' ' . $userFName . '</td>';
+	                        <td class = \'table-bordered\'>' . $row['descriptionProject'] . '</td>';
 	        if($user == null){
-	        $tableSQL .= '<td class = \'table-bordered\'>' . 
+	        $tableSQL .= '<td class = \'table-bordered\'>' . $userName . ' ' . $userFName . '</td>
+	                        <td class = \'table-bordered\'>' . 
 		                        Form::open('admin/delProject/').
 									Form::hidden('name', $row['nameProject']).
 									Form::hidden('id', $row['id']).
