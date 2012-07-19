@@ -73,6 +73,7 @@ table{
 }
 
 #formLog{
+  position: absolute;
   padding:20px;
   border:2px black ridge;
   box-shadow: 10px 10px 10px #aaa;

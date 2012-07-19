@@ -25,7 +25,14 @@ class User_Controller extends Base_Controller {
 
 	public function get_project()
 	{
-		return View::make('user.user')->with('content', 1);
+		require_once 'application/libraries/table.class.php';
+		$table = new TableSQL();
+
+		return View::make('user.user')->with(array(
+			'content' => 1,
+			'table' => $table->getTableProject(Session::get('login')),
+			'user' => Session::get('login')
+			));
 	}
 
 	public function post_project()

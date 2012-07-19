@@ -25,7 +25,7 @@ class TableSQL
 		if($this->link){mysql_close($this->link);}
 	}
 
-	public function getTableUser($options = null)
+	public function getTableUser()
 	{
 		$query = 'SELECT users.* 
 	               FROM users;';
@@ -68,10 +68,20 @@ class TableSQL
 		return $tableSQL;
 	}
 
-	public function getTableProject($options = null)
+	public function getTableProject($user = null)
 	{
-		$query = 'SELECT projects.* 
-	               FROM projects;';
+		if($user == null){
+			$query = 'SELECT projects.* 
+		               FROM projects;';
+        } else {
+        	$query = 'SELECT projects.* 
+		               FROM projects
+		               WHERE user_ID = (
+		               		SELECT id
+		               		FROM users
+		               		WHERE login = \'joff\')
+		               		;';
+        }
 	    $statement = mysql_query($query) or die(mysql_error());
 		$tableSQL = '<table class =\'table\'>
 		                    <tr class = \'table-condensed\'>
@@ -81,9 +91,11 @@ class TableSQL
 		                        <td class = \'table-bordered\'><b>Date de Début</b></td>
 		                        <td class = \'table-bordered\'><b>Date de Fin</b></td>
 		                        <td class = \'table-bordered\'><b>Description</b></td>
-		                        <td class = \'table-bordered\'><b>Responsable</b></td>
-		                        <td class = \'table-bordered\'><b>Action</b></td>
-		                    </tr>';
+		                        <td class = \'table-bordered\'><b>Responsable</b></td>';
+		if($user == null){
+		    $tableSQL .='<td class = \'table-bordered\'><b>Action</b></td>';
+		} 
+		$tableSQL .= '</tr>';
 		     
 	    while($row = mysql_fetch_assoc($statement)) {
 	    	$query2 = 'SELECT nameUser, fNameUser 
@@ -102,14 +114,16 @@ class TableSQL
 	                        <td class = \'table-bordered\'>' . $row['begin_at'] . '</td>
 	                        <td class = \'table-bordered\'>' . $row['end_at'] . '</td>
 	                        <td class = \'table-bordered\'>' . $row['descriptionProject'] . '</td>
-	                        <td class = \'table-bordered\'>' . $userName . ' ' . $userFName . '</td>
-	                        <td class = \'table-bordered\'>' . 
-	                        Form::open('admin/delProject/').
-								Form::hidden('name', $row['nameProject']).
-								Form::hidden('id', $row['id']).
-								Form::submit('Supprimer').
-							Form::close(). 
-							'</td>
+	                        <td class = \'table-bordered\'>' . $userName . ' ' . $userFName . '</td>';
+	        if($user == null){
+	        $tableSQL .= '<td class = \'table-bordered\'>' . 
+		                        Form::open('admin/delProject/').
+									Form::hidden('name', $row['nameProject']).
+									Form::hidden('id', $row['id']).
+									Form::submit('Supprimer').
+								Form::close();
+	        }
+	        $tableSQL .='</td>
 	                    </tr>';
 		   
 	    }

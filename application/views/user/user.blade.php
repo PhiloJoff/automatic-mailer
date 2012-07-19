@@ -10,7 +10,7 @@
 	</head>
 	<body>
 	    <div id='header'>
-	    	<h1>Administration</h1>
+	    	<h1> <?php echo Session::get('login') ?> </h1>
 		</div>
 		<div id='menu'>
 			<ul id="onglets">
@@ -23,9 +23,8 @@
 		case 1 :
 ?>
 			<div>
-				<ul>
-				    <li>Projet 1</li>
-				</ul>
+				<h3>Liste des projets</h3>
+				<?php echo 	$table; ?>
 			</div>
 
 <?php 	
