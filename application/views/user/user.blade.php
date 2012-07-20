@@ -10,7 +10,7 @@
 	</head>
 	<body>
 	    <div id='header'>
-	    	<h1> <?php echo Session::get('login') ?> </h1>
+	    	<h1> {{ Session::get('login') }} </h1>
 		</div>
 		<div id='menu'>
 			<ul id="onglets">
@@ -24,7 +24,7 @@
 ?>
 			<div>
 				<h3>Liste des projets</h3>
-				<?php echo 	$table; ?>
+				{{ $table }}
 			</div>
 
 <?php 	

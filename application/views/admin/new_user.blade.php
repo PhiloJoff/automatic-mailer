@@ -42,6 +42,9 @@
 					<br \>
 					{{Form::submit('Valider')}}
 				{{Form::close()}}
+				{{Form::open('admin/newUser/?etape=2')}}
+					{{Form::submit('Annuler')}}
+				{{Form::close()}}
 
 
 <?php

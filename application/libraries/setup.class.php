@@ -95,7 +95,7 @@ class Setup{
 			`nameMail` varchar(250) DEFAULT NULL,
 			`fNameMail` varchar(250) DEFAULT NULL,
 			`emailMail` varchar(250) DEFAULT NULL,
-			`created_at` date DEFAULT NULL,
+			`created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
 			`ip` varchar(250) DEFAULT NULL,
 			`image` varchar(250) DEFAULT NULL,
 			`project_ID` int(11) unsigned,

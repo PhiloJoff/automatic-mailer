@@ -5,7 +5,6 @@ class Setup_Controller extends Base_Controller
 
 	public function get_index()
 	{
-		require_once 'application/libraries/setup.class.php';
 		$Setup = new Setup();
 		$content = $Setup->checkSetup();
 		return View::make('setup.setup')->with('content', $content['msg']);
@@ -26,7 +25,6 @@ class Setup_Controller extends Base_Controller
 
 	public function post_install()
 	{
-		require_once 'application/libraries/setup.class.php';
 		$etape = Input::get('etape');
 		switch ($etape) {
 		case'1':
@@ -36,7 +34,6 @@ class Setup_Controller extends Base_Controller
 			$status = $Setup->connectHost('localhost',$user,$psw);
 			if ($status){
 				$Setup->createDb("automaticMailer");
-				require_once 'application/libraries/conf.class.php';
 				$Conf = new AddConfToFile('application/config/config.php','w');
 				$Conf->writeDefine('HOST', 'localhost');
 				$Conf->writeDefine('USER', $user);

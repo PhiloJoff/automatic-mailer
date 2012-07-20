@@ -422,4 +422,5 @@ class HTML {
 	    throw new \Exception("Method [$method] does not exist.");
 	}
 
+
 }

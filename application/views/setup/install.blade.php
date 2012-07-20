@@ -36,7 +36,7 @@
 			case 2 :
 		?>
 				<h3>Fin de l'installation</h3>
-				<h4>N'oubliez pas de supprimer le fichier "setup.php" dans le dossier controller afin de pour continuer</h4>
+				<h4>N'oubliez pas de renommer le fichier "setup.php" dans le dossier controller afin de pour continuer</h4>
 				{{Form::open('install/?etape=3')}}
 					{{Form::submit('Retour')}}
 				{{Form::close()}}

@@ -36,8 +36,8 @@ class TableSQL
 	                        <td class = \'table-bordered\'><b>Nom</b></td>
 	                        <td class = \'table-bordered\'><b>Prénom</b></td>
 	                        <td class = \'table-bordered\'><b>Mail</b></td>
-	                        <td class = \'table-bordered\'><b>Login</b></td>
-	                        <td class = \'table-bordered\'><b>MDP</b></td>
+	                        <td class = \'table-bordered\'><b>Identifiant</b></td>
+	                        <td class = \'table-bordered\'><b>Mot de passe</b></td>
 	                        <td class = \'table-bordered\'><b>Action</b></td>
 	                    </tr>';
 	     
@@ -109,7 +109,7 @@ class TableSQL
 	        $tableSQL .= '
 	        			<tr>
 	                        <td class = \'table-bordered\'>' . $row['id'] . '</td>
-	                        <td class = \'table-bordered\'>' . $row['nameProject'] . '</td>
+	                        <td class = \'table-bordered\'><a href=\''. URL::base() .'/project/' . $row['nameProject'] . '\'>'. $row['nameProject'] .'</a></td>
 	                        <td class = \'table-bordered\'>' . $row['created_at'] . '</td>
 	                        <td class = \'table-bordered\'>' . $row['begin_at'] . '</td>
 	                        <td class = \'table-bordered\'>' . $row['end_at'] . '</td>
@@ -120,7 +120,9 @@ class TableSQL
 		                        Form::open('admin/delProject/').
 									Form::hidden('name', $row['nameProject']).
 									Form::hidden('id', $row['id']).
-									Form::submit('Supprimer').
+									Form::submit('Supprimer', array(
+										'img' => 'img/delUser.png'
+										)).
 								Form::close();
 	        }
 	        $tableSQL .='</td>
@@ -148,4 +150,56 @@ class TableSQL
 		$list .= '</select>';
 		return $list;
 	}
+
+	public function getTableMail($project)
+	{
+		$tableSQL = array(
+			'exist' => false,
+			'content' => '');
+
+		$query='SELECT id
+				FROM projects
+				WHERE nameProject= \''. $project . '\';';
+	    $statement = mysql_query($query) or die(mysql_error());
+	    $row = mysql_fetch_assoc($statement);
+	    if($row != null){
+			$query = 'SELECT mails.* 
+		               FROM mails
+		               WHERE project_ID = (SELECT id
+		               						FROM projects
+		               						WHERE nameProject= \''. $project . '\');';
+		    $statement = mysql_query($query) or die(mysql_error());
+	    
+		    $tableSQL['content'] = '<table class =\'table\'>
+		                    <tr class = \'table-condensed\'>
+		                        <td class = \'table-bordered\'><b>ID</b></td>
+		                        <td class = \'table-bordered\'><b>Nom</b></td>
+		                        <td class = \'table-bordered\'><b>Prénom</b></td>
+		                        <td class = \'table-bordered\'><b>Mail</b></td>
+		                        <td class = \'table-bordered\'><b>Ajouté le</b></td>
+		                        <td class = \'table-bordered\'><b>IP</b></td>
+		                        <td class = \'table-bordered\'><b>Image</b></td>
+		                    </tr>';
+		     
+		    while($row = mysql_fetch_assoc($statement)) {
+
+		        $tableSQL['content'] .= '
+		        			<tr>
+		                        <td class = \'table-bordered\'>' . $row['id'] . '</td>
+		                        <td class = \'table-bordered\'>' . $row['nameMail'] . '</td>
+		                        <td class = \'table-bordered\'>' . $row['fNameMail'] . '</td>
+		                        <td class = \'table-bordered\'>' . $row['emailMail'] . '</td>
+		                        <td class = \'table-bordered\'>' . $row['created_at'] . '</td>
+		                        <td class = \'table-bordered\'>' . $row['ip'] . '</td>
+		                        <td class = \'table-bordered\'>' . $row['image'] . '</td>';
+			    
+		    }
+		     
+		    $tableSQL['content'] .= '</table>';
+		    $tableSQL['exist'] = true;
+		}
+
+		return $tableSQL;	
+	}
+
 }

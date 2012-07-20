@@ -25,8 +25,8 @@
 ?>
 			<div>
 				<h3>Liste des utilisateurs</h3>
-				{{ HTML::link_to_action('admin@newUser', 'Ajouter Utilisateur') }}
-				<?php echo 	$table; ?>
+				{{ HTML::image_link('admin/newUser', 'img/newUser.png', 'Ajouter Utilisateur', '', array('width' => '50','height' => '50')) }}
+				{{ $table }}
 			</div>
 <?php
 			break;
@@ -34,8 +34,8 @@
 ?>
 			<div>
 				<h3>Liste des projets</h3>
-				{{ HTML::link_to_action('admin@newProject', 'Ajouter Projet') }}
-				<?php echo 	$table; ?>
+				{{ HTML::image_link('admin/newProject', 'img/newProject.png', 'Ajouter Projet', '', array('width' => '50','height' => '50')) }}
+				{{ $table }} 	
 			</div>
 
 <?php 	

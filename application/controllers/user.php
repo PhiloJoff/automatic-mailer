@@ -25,7 +25,6 @@ class User_Controller extends Base_Controller {
 
 	public function get_project()
 	{
-		require_once 'application/libraries/table.class.php';
 		$table = new TableSQL();
 
 		return View::make('user.user')->with(array(

@@ -35,13 +35,17 @@
 					{{Form::text('begin')}}
 					<br \>
 					{{Form::label('end', 'Date de Fin(AAAA-MM-JJ)')}}
-					{{Form::email('end')}}
+					{{Form::text('end')}}
 					<br \>
 					{{Form::label('user', 'Responsable')}}
-					<?php echo $select ?>
+					{{ $select }}
 					<br \>
 					{{Form::submit('Valider')}}
 				{{Form::close()}}
+				{{Form::open('admin/newProject/?etape=2')}}
+					{{Form::submit('Annuler')}}
+				{{Form::close()}}
+
 
 
 <?php

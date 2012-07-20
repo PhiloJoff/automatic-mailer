@@ -171,3 +171,7 @@ if ( ! Request::cli() and Config::get('session.driver') !== '')
 {
 	Session::load();
 }
+
+require path('app').'libraries/macro.php';
+require 'application/libraries/table.class.php';
+require 'application/libraries/conf.class.php';

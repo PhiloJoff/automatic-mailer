@@ -25,7 +25,6 @@ class Admin_Controller extends Base_Controller {
 
 	public function get_user()
 	{
-		require_once 'application/libraries/table.class.php';
 		$table = new TableSQL();
 
 		return View::make('admin.admin')->with(array(
@@ -102,7 +101,6 @@ class Admin_Controller extends Base_Controller {
 
 	public function get_project()
 	{
-		require_once 'application/libraries/table.class.php';
 		$table = new TableSQL();
 
 		return View::make('admin.admin')->with(array(
@@ -120,7 +118,6 @@ class Admin_Controller extends Base_Controller {
 		if(!isset($content)){
 			$content = 0;
 		}
-		require_once 'application/libraries/table.class.php';
 		$table = new TableSQL();
 		return View::make('admin.new_project')->with(array(
 			'content'=> $content,

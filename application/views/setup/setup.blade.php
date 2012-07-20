@@ -4,6 +4,6 @@
 		<title>Automatic-Mailer</title>
 	</head>
 	<body>
-		<?php echo $content; ?>
+		{{ $content }}
 	</body>
 </html>

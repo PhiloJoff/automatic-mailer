@@ -22,7 +22,7 @@
 				break;
 			default :
 ?>
-				<h3>Etes-vous sur de vouloir supprimer l'utilisateur <?php echo $user ?> ?</h3>
+				<h3>Etes-vous sur de vouloir supprimer l'utilisateur {{ $user }} ?</h3>
 				
 				{{Form::open('admin/delUser/?etape=1')}}
 					{{Form::submit('Non')}}

@@ -22,7 +22,7 @@
 				break;
 			default :
 ?>
-				<h3>Etes-vous sur de vouloir supprimer le projet <?php echo $project ?> ?</h3>
+				<h3>Etes-vous sur de vouloir supprimer le projet {{ $project }} ?</h3>
 				
 				{{Form::open('admin/delProject/?etape=1')}}
 					{{Form::submit('Non')}}
