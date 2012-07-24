@@ -1,13 +1,6 @@
 <?php
 
-HTML::macro('image_link', function($url = '', $img='img/', $alt='', $param = false, $active=true, $ssl=false)
-{
-	$url = $ssl==true ? URL::to_secure($url) : URL::to($url);  
-	$img = HTML::image($img,$alt);
-	$link = $active==true ? HTML::link($url, '#', $param) : $img;
-	$link = str_replace('#',$img,$link);
-	return $link;
-}); 
+
 
 class Home_Controller extends Base_Controller {
 
@@ -16,7 +9,7 @@ class Home_Controller extends Base_Controller {
 
 	public function get_index()
 	{
-		require_once 'application/libraries/conf.class.php';
+		
 		if(file_exists('application/controllers/setup.php')){
 			return Controller::call('setup@index');		
 		} 

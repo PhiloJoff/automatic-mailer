@@ -45,14 +45,6 @@ Route::controller('admin');
 Route::controller('user');
 Route::controller('project');
 
-/*{
-	//return Controller::call('project@viewProject')->with('project', $project);
-	return View::make('project.project')->with(array(
-			'header' => $project,
-			'table' => "test"
-			));
-});*/
-
 /*
 |--------------------------------------------------------------------------
 | Application 404 & 500 Error Handlers

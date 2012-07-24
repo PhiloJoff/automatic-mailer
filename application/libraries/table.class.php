@@ -22,7 +22,9 @@ class TableSQL
 
 	public function __destruct()
 	{
-		if($this->link){mysql_close($this->link);}
+		if($this->link){
+			mysql_close($this->link);
+		}
 	}
 
 	public function getTableUser()
@@ -109,7 +111,11 @@ class TableSQL
 	        $tableSQL .= '
 	        			<tr>
 	                        <td class = \'table-bordered\'>' . $row['id'] . '</td>
-	                        <td class = \'table-bordered\'><a href=\''. URL::base() .'/project/' . $row['nameProject'] . '\'>'. $row['nameProject'] .'</a></td>
+	                        <td class = \'table-bordered\'>
+	                        	<a href=\''. URL::base() .'/project/' . 
+	                        	str_replace(' ', '-' ,$row['nameProject']) . '\'>'. 
+	                        	$row['nameProject'] .
+	                        	'</a></td>
 	                        <td class = \'table-bordered\'>' . $row['created_at'] . '</td>
 	                        <td class = \'table-bordered\'>' . $row['begin_at'] . '</td>
 	                        <td class = \'table-bordered\'>' . $row['end_at'] . '</td>
@@ -143,9 +149,11 @@ class TableSQL
 		$list = '<select name=\'user\' required>
 					<option value=""></option>';
 		while($row = mysql_fetch_assoc($statement)) {
-			$list .='<option value =\'' . $row['id'] . '\'>'
+			if($row['id'] != 1){
+				$list .='<option value =\'' . $row['id'] . '\'>'
 				. $row['nameUser'] . ' ' . $row['fNameUser']
 				. '</option>';
+			}
 		}
 		$list .= '</select>';
 		return $list;

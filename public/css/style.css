@@ -125,3 +125,10 @@ table{
     text-decoration : none;
     padding : 4px;
 }
+
+#noButton
+{
+  border:0; 
+  background:transparent;
+
+}

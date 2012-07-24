@@ -175,3 +175,4 @@ if ( ! Request::cli() and Config::get('session.driver') !== '')
 require path('app').'libraries/macro.php';
 require 'application/libraries/table.class.php';
 require 'application/libraries/conf.class.php';
+require 'application/libraries/setup.class.php';

@@ -6,21 +6,43 @@
 		<title>Administration - Automatic Mailer</title>
 		<meta name='viewport' content='width=device-width'>
 		{{ HTML::style('css/style.css') }}
+		{{ HTML::style('css/csvtable.css') }}
 		{{ HTML::style('css/bootstrap.css') }}
 	</head>
-	<body>
+	<body id="home">
 	    <div id='header'>
-	    	<h1>{{ $header }}</h1>
+	    	<h1>{{ $project }}</h1>
 		</div>
-		<div>
-			<h3>Liste des contacts</h3>
-			{{Form::open('')}}
-					{{Form::submit('Retour')}}
-				{{Form::close()}}
+		<h3>Liste des contacts</h3>
+		{{Form::open('')}}
+				{{Form::submit('Retour')}}
+		{{Form::close()}}
+<?php
+	switch ($case) {
+		case '1':
+?>
+			<div id="table">
+			</div>
+
+			{{ HTML::script('js/jquery.1.7.1.min.js') }}
+			{{ HTML::script('js/jquery.csvToTable.js') }}
+			{{ HTML::script('js/jquery.tablesorter.min.js') }}
+			{{ HTML::script('js/script.js') }}
+			<script type="text/javascript">
+				tableCsv('{{ $project }}');
+			</script>
+<?php
+			break;
+		default:
+?>
+			<div>
 			{{ $table }}
-		</div>
-
-
+			<br \>
+			</div>
+<?php
+			break;
+	}
+?>		
 
 	</body>
 </html>
