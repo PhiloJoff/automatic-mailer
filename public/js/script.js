@@ -45,3 +45,9 @@ function tableCsv(csvName){
 		});
 	});;
 }
+
+function check(status){
+	boxes = document.getElementsByName('check');
+	for(var i in boxes)
+		boxes[i].checked = status;
+}

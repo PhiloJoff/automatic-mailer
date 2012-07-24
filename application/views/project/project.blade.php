@@ -35,10 +35,11 @@
 			break;
 		default:
 ?>
-			<div>
+			<div id="table">
 			{{ $table }}
 			<br \>
 			</div>
+			{{ HTML::script('js/script.js') }}
 <?php
 			break;
 	}

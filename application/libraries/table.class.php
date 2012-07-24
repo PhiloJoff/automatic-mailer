@@ -170,6 +170,7 @@ class TableSQL
 				WHERE nameProject= \''. $project . '\';';
 	    $statement = mysql_query($query) or die(mysql_error());
 	    $row = mysql_fetch_assoc($statement);
+	    $indexCB = 0;
 	    if($row != null){
 			$query = 'SELECT mails.* 
 		               FROM mails
@@ -180,6 +181,9 @@ class TableSQL
 	    
 		    $tableSQL['content'] = '<table class =\'table\'>
 		                    <tr class = \'table-condensed\'>
+		                    	<td class = \'table-bordered\'>
+		                    		<input type="checkbox" name="checkAll" value="'.$indexCB.'" onclick="check(this.checked)"> 
+		                    	</td>
 		                        <td class = \'table-bordered\'><b>ID</b></td>
 		                        <td class = \'table-bordered\'><b>Nom</b></td>
 		                        <td class = \'table-bordered\'><b>Prénom</b></td>
@@ -187,20 +191,26 @@ class TableSQL
 		                        <td class = \'table-bordered\'><b>Ajouté le</b></td>
 		                        <td class = \'table-bordered\'><b>IP</b></td>
 		                        <td class = \'table-bordered\'><b>Image</b></td>
+		                        <td class = \'table-bordered\'><b>Action</b></td>
 		                    </tr>';
-		     
+		    $indexCB++;
 		    while($row = mysql_fetch_assoc($statement)) {
 
 		        $tableSQL['content'] .= '
 		        			<tr>
+		        				<td class = \'table-bordered\'>
+		                    		<input type="checkbox" name="check" value="'.$indexCB.'"> 
+		                    	</td>
 		                        <td class = \'table-bordered\'>' . $row['id'] . '</td>
 		                        <td class = \'table-bordered\'>' . $row['nameMail'] . '</td>
 		                        <td class = \'table-bordered\'>' . $row['fNameMail'] . '</td>
 		                        <td class = \'table-bordered\'>' . $row['emailMail'] . '</td>
 		                        <td class = \'table-bordered\'>' . $row['created_at'] . '</td>
 		                        <td class = \'table-bordered\'>' . $row['ip'] . '</td>
-		                        <td class = \'table-bordered\'>' . $row['image'] . '</td>';
-			    
+		                        <td class = \'table-bordered\'>' . 
+		                        HTML::Image($row['image'], '', array('width' => '50','height' => '50')) . 
+		                        '</td>';
+				$indexCB++;    
 		    }
 		     
 		    $tableSQL['content'] .= '</table>';
