@@ -39,11 +39,13 @@ Route::any('admin/delUser', 'admin@delUser');
 Route::any('admin/newProject', 'admin@newProject');
 Route::any('admin/delProject', 'admin@delProject');
 Route::any('project/(:any)', 'project@viewProject');
+Route::any('private/project/(:any)/subscriber', 'subscrib@index');
 Route::controller('home');
 Route::controller('setup');
 Route::controller('admin');
 Route::controller('user');
 Route::controller('project');
+Route::controller('subscrib');
 
 /*
 |--------------------------------------------------------------------------

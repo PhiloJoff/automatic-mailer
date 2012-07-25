@@ -57,3 +57,4 @@ function check(status){
 	for(var i in boxes)
 		boxes[i].checked = status;
 }
+

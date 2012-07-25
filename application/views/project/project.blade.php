@@ -6,9 +6,8 @@
 		<title>Administration - Automatic Mailer</title>
 		<meta name='viewport' content='width=device-width'>
 		{{ HTML::style('css/style.css') }}
-		{{ HTML::style('css/csvtable.css') }}
+		{{ HTML::style('css/jquery.dataTables.css') }}
 		{{ HTML::style('css/bootstrap.css') }}
-		{{ HTML::style('css/jquery.dataTables_themeroller.css') }}
 	</head>
 	<body id="home">
 	    <div id='header'>

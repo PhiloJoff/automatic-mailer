@@ -226,4 +226,16 @@ class TableSQL
 		return $tableSQL;	
 	}
 
+	public function projectExist($project){
+		$query='SELECT id
+				FROM projects
+				WHERE nameProject= \''. $project . '\';';
+		$statement = mysql_query($query) or die(mysql_error());
+	    $row = mysql_fetch_assoc($statement);
+	    
+	    if($row != null)
+	    	return true;
+	    return false;
+	}
+
 }

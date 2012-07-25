@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>McDonald's</title>
+		<title>Administration - Automatic Mailer</title>
 		<meta name="viewport" content="width=device-width">
 		{{ HTML::style('css/style.css') }}
 		{{ HTML::style('css/csvtable.css') }}
