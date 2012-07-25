@@ -32,29 +32,29 @@ class TableSQL
 		$query = 'SELECT users.* 
 	               FROM users;';
 	    $statement = mysql_query($query) or die(mysql_error());
-	    $tableSQL = '<table class =\'table\'>
-	                    <tr class = \'table-condensed\'>
-	                        <td class = \'table-bordered\'><b>ID</b></td>
-	                        <td class = \'table-bordered\'><b>Nom</b></td>
-	                        <td class = \'table-bordered\'><b>Prénom</b></td>
-	                        <td class = \'table-bordered\'><b>Mail</b></td>
-	                        <td class = \'table-bordered\'><b>Identifiant</b></td>
-	                        <td class = \'table-bordered\'><b>Mot de passe</b></td>
-	                        <td class = \'table-bordered\'><b>Action</b></td>
-	                    </tr>';
+	    $tableSQL = '<table class =\'table table-striped table-bordered table-condensed\'>
+	                    <thead class = \'\'>
+	                        <th class = \'header\'><b>ID</b></td>
+	                        <th class = \'header\'><b>Nom</b></td>
+	                        <th class = \'header\'><b>Prénom</b></td>
+	                        <th class = \'header\'><b>Mail</b></td>
+	                        <th class = \'header\'><b>Identifiant</b></td>
+	                        <th class = \'header\'><b>Mot de passe</b></td>
+	                        <th class = \'header\'><b>Action</b></td>
+	                    </thead>';
 	     
 	    while($row = mysql_fetch_assoc($statement)) {
 	        if(strcmp($row['role'], 'admin') != 0){
 
 		        $tableSQL .= '
 		        			<tr>
-		                        <td class = \'table-bordered\'>' . $row['id'] . '</td>
-		                        <td class = \'table-bordered\'>' . $row['nameUser'] . '</td>
-		                        <td class = \'table-bordered\'>' . $row['fNameUser'] . '</td>
-		                        <td class = \'table-bordered\'>' . $row['emailUser'] . '</td>
-		                        <td class = \'table-bordered\'>' . $row['login'] . '</td>
-		                        <td class = \'table-bordered\'>' . $row['password'] . '</td>
-		                        <td class = \'table-bordered\'>' . 
+		                        <td class = \'\'>' . $row['id'] . '</td>
+		                        <td class = \'\'>' . $row['nameUser'] . '</td>
+		                        <td class = \'\'>' . $row['fNameUser'] . '</td>
+		                        <td class = \'\'>' . $row['emailUser'] . '</td>
+		                        <td class = \'\'>' . $row['login'] . '</td>
+		                        <td class = \'\'>' . $row['password'] . '</td>
+		                        <td class = \'\'>' . 
 		                        Form::open('admin/delUser').
 									Form::hidden('name', $row['nameUser']).
 									Form::hidden('id', $row['id']).
@@ -85,19 +85,19 @@ class TableSQL
 		               		;';
         }
 	    $statement = mysql_query($query) or die(mysql_error());
-		$tableSQL = '<table class =\'table\'>
-		                    <tr class = \'table-condensed\'>
-		                        <td class = \'table-bordered\'><b>ID</b></td>
-		                        <td class = \'table-bordered\'><b>Nom</b></td>
-		                        <td class = \'table-bordered\'><b>Date de Création</b></td>
-		                        <td class = \'table-bordered\'><b>Date de Début</b></td>
-		                        <td class = \'table-bordered\'><b>Date de Fin</b></td>
-		                        <td class = \'table-bordered\'><b>Description</b></td>';
+		$tableSQL = '<table class =\'table table-striped table-bordered table-condensed\'>
+		                    <thead class = \'\'>
+		                        <th class = \'header\'><b>ID</b></td>
+		                        <th class = \'header\'><b>Nom</b></td>
+		                        <th class = \'header\'><b>Date de Création</b></td>
+		                        <th class = \'header\'><b>Date de Début</b></td>
+		                        <th class = \'header\'><b>Date de Fin</b></td>
+		                        <th class = \'header\'><b>Description</b></td>';
 		if($user == null){
-		    $tableSQL .='<td class = \'table-bordered\'><b>Responsable</b></td>
-		    			<td class = \'table-bordered\'><b>Action</b></td>';
+		    $tableSQL .='<th class = \'header\'><b>Responsable</b></td>
+		    			<th class = \'header\'><b>Action</b></td>';
 		} 
-		$tableSQL .= '</tr>';
+		$tableSQL .= '</thead>';
 		     
 	    while($row = mysql_fetch_assoc($statement)) {
 	    	$query2 = 'SELECT nameUser, fNameUser 
@@ -110,19 +110,19 @@ class TableSQL
 		    }
 	        $tableSQL .= '
 	        			<tr>
-	                        <td class = \'table-bordered\'>' . $row['id'] . '</td>
-	                        <td class = \'table-bordered\'>
+	                        <td class = \'\'>' . $row['id'] . '</td>
+	                        <td class = \'\'>
 	                        	<a href=\''. URL::base() .'/project/' . 
 	                        	str_replace(' ', '-' ,$row['nameProject']) . '\'>'. 
 	                        	$row['nameProject'] .
 	                        	'</a></td>
-	                        <td class = \'table-bordered\'>' . $row['created_at'] . '</td>
-	                        <td class = \'table-bordered\'>' . $row['begin_at'] . '</td>
+	                        <td class = \'\'>' . $row['created_at'] . '</td>
+	                        <td class = \'\'>' . $row['begin_at'] . '</td>
 	                        <td class = \'table-bordered\'>' . $row['end_at'] . '</td>
-	                        <td class = \'table-bordered\'>' . $row['descriptionProject'] . '</td>';
+	                        <td class = \'\'>' . $row['descriptionProject'] . '</td>';
 	        if($user == null){
-	        $tableSQL .= '<td class = \'table-bordered\'>' . $userName . ' ' . $userFName . '</td>
-	                        <td class = \'table-bordered\'>' . 
+	        $tableSQL .= '<td class = \'\'>' . $userName . ' ' . $userFName . '</td>
+	                        <td class = \'\'>' . 
 		                        Form::open('admin/delProject/').
 									Form::hidden('name', $row['nameProject']).
 									Form::hidden('id', $row['id']).
@@ -179,37 +179,37 @@ class TableSQL
 		               						WHERE nameProject= \''. $project . '\');';
 		    $statement = mysql_query($query) or die(mysql_error());
 	    
-		    $tableSQL['content'] = '<table class =\'table\'>
-		                    <tr class = \'table-condensed\'>
-		                    	<td class = \'table-bordered\'>
+		    $tableSQL['content'] = '<table class =\'table table-striped table-bordered table-condensed\'>
+		                    <thead class = \'\'>
+		                    	<th class = \'header\'>
 		                    		<input type="checkbox" name="checkAll" value="'.$indexCB.'" onclick="check(this.checked)"> 
-		                    	</td>
-		                        <td class = \'table-bordered\'><b>ID</b></td>
-		                        <td class = \'table-bordered\'><b>Nom</b></td>
-		                        <td class = \'table-bordered\'><b>Prénom</b></td>
-		                        <td class = \'table-bordered\'><b>Mail</b></td>
-		                        <td class = \'table-bordered\'><b>Ajouté le</b></td>
-		                        <td class = \'table-bordered\'><b>IP</b></td>
-		                        <td class = \'table-bordered\'><b>Image</b></td>
-		                        <td class = \'table-bordered\'><b>Action</b></td>
-		                    </tr>';
+		                    	</th>
+		                        <th class = \'header\'><b>ID</b></th>
+		                        <th class = \'header\'><b>Nom</b></th>
+		                        <th class = \'header\'><b>Prénom</b></th>
+		                        <th class = \'header\'><b>Mail</b></th>
+		                        <th class = \'header\'><b>Ajouté le</b></th>
+		                        <th class = \'header\'><b>IP</b></th>
+		                        <th class = \'header\'><b>Image</b></th>
+		                        <th class = \'header\'><b>Action</b></th>
+		                    </thead>';
 		    $indexCB++;
 		    while($row = mysql_fetch_assoc($statement)) {
 
 		        $tableSQL['content'] .= '
 		        			<tr>
-		        				<td class = \'table-bordered\'>
+		        				<td class = \'\'>
 		                    		<input type="checkbox" name="check" value="'.$indexCB.'"> 
 		                    	</td>
-		                        <td class = \'table-bordered\'>' . $row['id'] . '</td>
-		                        <td class = \'table-bordered\'>' . $row['nameMail'] . '</td>
-		                        <td class = \'table-bordered\'>' . $row['fNameMail'] . '</td>
-		                        <td class = \'table-bordered\'>' . $row['emailMail'] . '</td>
-		                        <td class = \'table-bordered\'>' . $row['created_at'] . '</td>
-		                        <td class = \'table-bordered\'>' . $row['ip'] . '</td>
-		                        <td class = \'table-bordered\'>' . 
+		                        <td class = \'\'>' . $row['id'] . '</td>
+		                        <td class = \'\'>' . $row['nameMail'] . '</td>
+		                        <td class = \'\'>' . $row['fNameMail'] . '</td>
+		                        <td class = \'\'>' . $row['emailMail'] . '</td>
+		                        <td class = \'\'>' . $row['created_at'] . '</td>
+		                        <td class = \'\'>' . $row['ip'] . '</td>
+		                        <td class = \'\'>' . 
 		                        HTML::Image($row['image'], '', array('width' => '50','height' => '50')) . 
-		                        '</td>';
+		                        '</td></tr>';
 				$indexCB++;    
 		    }
 		     

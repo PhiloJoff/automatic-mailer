@@ -105,6 +105,7 @@
 						headers = options.headers;
 						headerCount = headers.length;
 						tableHTML += '<thead class="' + options.theadClass + '"><tr class="' + options.trClass + '">';
+						tableHTML += '<td class="' + options.thClass + '"><input type="checkbox" name="checkAll" onclick="check(this.checked)"></td>';
 						$.each(headers, function(headerCount, header) {
 							tableHTML += '<th class="' + options.thClass + '">' + header + '</th>';
 						});
@@ -114,6 +115,7 @@
 						headers = line.splitCSV(options.separator);
 						headerCount = headers.length;
 						tableHTML += '<thead class="' + options.theadClass + '"><tr class="' + options.trClass + '">';
+						tableHTML += '<td class="' + options.thClass + '"><input type="checkbox" name="checkAll" onclick="check(this.checked)"></td>';
 						$.each(headers, function(headerCount, header) {
 							tableHTML += '<th class="' + options.thClass + '">' + header + '</th>';
 						});
@@ -127,6 +129,7 @@
 							}
 							(printedLines % 2) ? oddOrEven = 'odd' : oddOrEven = 'even';
 							tableHTML += '<tr class="' + options.trClass + ' ' + oddOrEven + '">';
+							tableHTML += '<td class="' + options.tdClass + '"><input type="checkbox" name="check"></td>';
 							$.each(items, function(itemCount, item) {
 								tableHTML += '<td class="' + options.tdClass + '">' + item + '</td>';
 							});
