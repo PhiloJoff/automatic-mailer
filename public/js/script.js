@@ -9,7 +9,7 @@ function tableCsv(csvName){
 			startLine: 1, 
 			separator:",",
 			headers: ['id', 'Name', 'Firstname', 'mail', 'Date', 'ip origin', 'Picture'] 
-			}).bind("loadComplete",function() { 
+			}).bind('loadComplete', function() { 
 		$(table.container).find('TABLE').tablesorter();
 		$('table').find('tr > td:last-child').each(function(){
 			$(this).html('<img class="little_pic" src="photos/'+$(this).html()+'">');

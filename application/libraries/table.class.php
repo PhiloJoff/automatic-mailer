@@ -179,27 +179,30 @@ class TableSQL
 		               						WHERE nameProject= \''. $project . '\');';
 		    $statement = mysql_query($query) or die(mysql_error());
 	    
-		    $tableSQL['content'] = '<table class =\'table table-striped table-bordered table-condensed\'>
+		    $tableSQL['content'] = '<table id="tableSQL" class =\'table table-striped table-bordered table-condensed\' onload=\'tablesorter()\'>
 		                    <thead class = \'\'>
-		                    	<th class = \'header\'>
-		                    		<input type="checkbox" name="checkAll" value="'.$indexCB.'" onclick="check(this.checked)"> 
-		                    	</th>
-		                        <th class = \'header\'><b>ID</b></th>
-		                        <th class = \'header\'><b>Nom</b></th>
-		                        <th class = \'header\'><b>Prénom</b></th>
-		                        <th class = \'header\'><b>Mail</b></th>
-		                        <th class = \'header\'><b>Ajouté le</b></th>
-		                        <th class = \'header\'><b>IP</b></th>
-		                        <th class = \'header\'><b>Image</b></th>
-		                        <th class = \'header\'><b>Action</b></th>
+		                    	<tr class = \'\'>
+			                    	<th class = \'header\'>
+			                    		<input type="checkbox" name="checkAll" value="'.$indexCB.'" onclick="check(this.checked)"> 
+			                    	</th>
+			                        <th class = \'header\'><b>ID</b></th>
+			                        <th class = \'header\'><b>Nom</b></th>
+			                        <th class = \'header\'><b>Prénom</b></th>
+			                        <th class = \'header\'><b>Mail</b></th>
+			                        <th class = \'header\'><b>Ajouté le</b></th>
+			                        <th class = \'header\'><b>IP</b></th>
+			                        <th class = \'header\'><b>Image</b></th>
+			                        <th class = \'header\'><b>Action</b></th>
+			                    </tr>
 		                    </thead>';
 		    $indexCB++;
+		    $tableSQL['content'] .= '<tbody class = \'\'>';
 		    while($row = mysql_fetch_assoc($statement)) {
-
+		    	($indexCB % 2) ? $oddOrEven = 'odd' : $oddOrEven = 'even';
 		        $tableSQL['content'] .= '
-		        			<tr>
+		        			<tr class="'.$oddOrEven.'">
 		        				<td class = \'\'>
-		                    		<input type="checkbox" name="check" value="'.$indexCB.'"> 
+		                    		<input type="checkbox" name="check" > 
 		                    	</td>
 		                        <td class = \'\'>' . $row['id'] . '</td>
 		                        <td class = \'\'>' . $row['nameMail'] . '</td>
@@ -209,11 +212,12 @@ class TableSQL
 		                        <td class = \'\'>' . $row['ip'] . '</td>
 		                        <td class = \'\'>' . 
 		                        HTML::Image($row['image'], '', array('width' => '50','height' => '50')) . 
-		                        '</td></tr>';
+	                        	'</td>
+                        	</tr>';
 				$indexCB++;    
 		    }
 		     
-		    $tableSQL['content'] .= '</table>';
+		    $tableSQL['content'] .= '</tbody></table>';
 		    $tableSQL['exist'] = true;
 		}
 

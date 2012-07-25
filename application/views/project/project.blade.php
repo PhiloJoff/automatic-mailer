@@ -37,9 +37,13 @@
 ?>
 			<div id="table">
 			{{ $table }}
-			<br \>
 			</div>
+			{{ HTML::script('js/jquery.1.7.1.min.js') }}
+			{{ HTML::script('js/jquery.tablesorter.min.js') }}
 			{{ HTML::script('js/script.js') }}
+			<script type="text/javascript">
+				$('#tableSQL').bind("loadComplete", $('#tableSQL').tablesorter());
+			</script>
 <?php
 			break;
 	}
