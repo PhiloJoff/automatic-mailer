@@ -182,9 +182,9 @@ class TableSQL
 		    $tableSQL['content'] = '<table id="tableSQL" class =\'table table-striped table-bordered table-condensed\' onload=\'tablesorter()\'>
 		                    <thead class = \'\'>
 		                    	<tr class = \'\'>
-			                    	<th class = \'header\'>
+			                    	<td>
 			                    		<input type="checkbox" name="checkAll" value="'.$indexCB.'" onclick="check(this.checked)"> 
-			                    	</th>
+			                    	</td>
 			                        <th class = \'header\'><b>ID</b></th>
 			                        <th class = \'header\'><b>Nom</b></th>
 			                        <th class = \'header\'><b>Prénom</b></th>
@@ -213,6 +213,8 @@ class TableSQL
 		                        <td class = \'\'>' . 
 		                        HTML::Image($row['image'], '', array('width' => '50','height' => '50')) . 
 	                        	'</td>
+	                        	<td class = \'\'>
+	                        	<button class="btn"> <i class="icon-envelope"></i>Envoyer mail à '. $row['nameMail'] .'</button> 
                         	</tr>';
 				$indexCB++;    
 		    }

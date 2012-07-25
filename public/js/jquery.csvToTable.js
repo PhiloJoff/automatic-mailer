@@ -95,7 +95,7 @@
 			(options.loadingImage) ? loading = '<div style="text-align: center"><img alt="' + options.loadingText + '" src="' + options.loadingImage + '" /><br>' + options.loadingText + '</div>' : loading = options.loadingText;
 			obj.html(loading);
 			$.get(csvFile, function(data) {
-				var tableHTML = '<table class="' + options.tableClass + '">';
+				var tableHTML = '<table id="tableCSV" class="' + options.tableClass + '">';
 				var lines = data.replace('\r','').split('\n');
 				var printedLines = 0;
 				var headerCount = 0;

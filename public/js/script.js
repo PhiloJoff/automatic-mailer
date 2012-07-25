@@ -1,16 +1,16 @@
-var table={container:""};
+var project={container:""};
+project.container = "#tableProject";
+
 function tableCsv(csvName){
 
-	table.container = "#table";
-
-	$(table.container).CSVToTable('../data/'+csvName+'.csv',{ 
+	$(project.container).CSVToTable('../data/'+csvName+'.csv',{ 
 			loadingImage: '../img/loading.gif',
 			tableClass:'table table-striped table-bordered table-condensed', 
 			startLine: 1, 
 			separator:",",
 			headers: ['id', 'Name', 'Firstname', 'mail', 'Date', 'ip origin', 'Picture'] 
 			}).bind('loadComplete', function() { 
-		$(table.container).find('TABLE').tablesorter();
+		$(project.container).find('TABLE').tablesorter();
 		$('table').find('tr > td:last-child').each(function(){
 			$(this).html('<img class="little_pic" src="photos/'+$(this).html()+'">');
 		});

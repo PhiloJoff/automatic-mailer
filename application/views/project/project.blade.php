@@ -8,6 +8,7 @@
 		{{ HTML::style('css/style.css') }}
 		{{ HTML::style('css/csvtable.css') }}
 		{{ HTML::style('css/bootstrap.css') }}
+		{{ HTML::style('css/jquery.dataTables_themeroller.css') }}
 	</head>
 	<body id="home">
 	    <div id='header'>
@@ -21,28 +22,36 @@
 	switch ($case) {
 		case '1':
 ?>
-			<div id="table">
+			<div id="tableProject">
 			</div>
 
 			{{ HTML::script('js/jquery.1.7.1.min.js') }}
 			{{ HTML::script('js/jquery.csvToTable.js') }}
+			{{ HTML::script('js/jquery.dataTables.js') }}
 			{{ HTML::script('js/jquery.tablesorter.min.js') }}
 			{{ HTML::script('js/script.js') }}
 			<script type="text/javascript">
 				tableCsv('{{ $project }}');
+				$('#tableCSV').ready(function() {
+				$('#tableCSV').dataTable();
+				} ); 
 			</script>
 <?php
 			break;
 		default:
 ?>
-			<div id="table">
-			{{ $table }}
+			<div id="tableProject">
+				<div id="example_length" class="dataTables_length">
+					{{ $table }}
+				</div>
 			</div>
 			{{ HTML::script('js/jquery.1.7.1.min.js') }}
-			{{ HTML::script('js/jquery.tablesorter.min.js') }}
+			{{ HTML::script('js/jquery.dataTables.js') }}
 			{{ HTML::script('js/script.js') }}
 			<script type="text/javascript">
-				$('#tableSQL').bind("loadComplete", $('#tableSQL').tablesorter());
+				$(document).ready(function() {
+				$('#tableSQL').dataTable();
+				} ); 
 			</script>
 <?php
 			break;

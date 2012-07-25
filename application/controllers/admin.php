@@ -37,7 +37,7 @@ class Admin_Controller extends Base_Controller {
 	{
 	}
 
-	public function get_newUser()
+	public function get_newUser()	
 	{
 		if(!isset($content)){
 			$content = 0;
